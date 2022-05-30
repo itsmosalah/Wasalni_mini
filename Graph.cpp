@@ -25,7 +25,7 @@ void Graph::algoOutputTest(int start, int dest, vector<pair<int, int>>(*algorith
         for (int i = 0; i < path.size(); i++) {
             cout << toString[path[i].first];
 
-            if (i < path.size() - 1) {
+            if (i < int(path.size()) - 1) {
                 cout << " --> ";
             }
         }
