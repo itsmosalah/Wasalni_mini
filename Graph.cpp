@@ -16,7 +16,7 @@ string choice;
 
 void Graph::algoOutputTest(int start, int dest, vector<pair<int, int>>(*algorithm)(int, int, int, int&, vector<edge>&)) {
 
-    int dis = -1; vector<pair<int, int>>path;
+    int dis = -1;vector<pair<int, int>>path;
     path = algorithm(start, dest, nodes, dis, edges);
 
     if (dis == -1)
