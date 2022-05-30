@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Wasalni_final"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Wasalni_final">
+				<Option output="/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug/Wasalni_final" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/."/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug/Makefile&quot;  VERBOSE=1 Wasalni_final"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Wasalni_final/fast">
+				<Option output="/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug/Wasalni_final" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/."/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug/Makefile&quot;  VERBOSE=1 Wasalni_final/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/Colors.cpp">
+			<Option target="Wasalni_final"/>
+		</Unit>
+		<Unit filename="/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/FileHandling.cpp">
+			<Option target="Wasalni_final"/>
+		</Unit>
+		<Unit filename="/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/FileHandling.h">
+			<Option target="Wasalni_final"/>
+		</Unit>
+		<Unit filename="/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/Graph.cpp">
+			<Option target="Wasalni_final"/>
+		</Unit>
+		<Unit filename="/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/Graph.h">
+			<Option target="Wasalni_final"/>
+		</Unit>
+		<Unit filename="/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/StartMenu.cpp">
+			<Option target="Wasalni_final"/>
+		</Unit>
+		<Unit filename="/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/StartMenu.h">
+			<Option target="Wasalni_final"/>
+		</Unit>
+		<Unit filename="/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/Validation.cpp">
+			<Option target="Wasalni_final"/>
+		</Unit>
+		<Unit filename="/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/Validation.h">
+			<Option target="Wasalni_final"/>
+		</Unit>
+		<Unit filename="/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/edge.cpp">
+			<Option target="Wasalni_final"/>
+		</Unit>
+		<Unit filename="/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/edge.h">
+			<Option target="Wasalni_final"/>
+		</Unit>
+		<Unit filename="/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/main.cpp">
+			<Option target="Wasalni_final"/>
+		</Unit>
+		<Unit filename="/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/shortestPath.cpp">
+			<Option target="Wasalni_final"/>
+		</Unit>
+		<Unit filename="/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/shortestPath.h">
+			<Option target="Wasalni_final"/>
+		</Unit>
+		<Unit filename="/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
