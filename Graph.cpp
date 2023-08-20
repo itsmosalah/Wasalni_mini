@@ -5,7 +5,7 @@
 #include <string>
 #include <iostream>
 #include <stdlib.h>
-#include "Colors.cpp"
+#include "ConsoleOutput.h"
 
 using namespace std;
 
@@ -20,17 +20,17 @@ void Graph::algoOutputTest(int start, int dest, vector<pair<int, int>>(*algorith
     path = algorithm(start, dest, nodes, dis, edges);
 
     if (dis == -1)
-        cout << "There is no path\n";
+        ConsoleOutput::error("There is no path\n");
     else {
         for (int i = 0; i < path.size(); i++) {
-            cout << toString[path[i].first];
+            ConsoleOutput::message(toString[path[i].first]);
 
             if (i < int(path.size()) - 1) {
-                cout << " --> ";
+                ConsoleOutput::info(" --> ");
             }
         }
         
-        Colors("\nWith total distance: " + to_string(dis) + "\n", 11);
+        ConsoleOutput::info_bright("\nWith total distance: " + to_string(dis) + "\n");
     }
 }
 
@@ -52,12 +52,12 @@ void Graph::insertGraph() {
     Validation::userGuide(choice,"How many locations would you like to add? (Or enter '0' to skip).", 2, numOfLocations);
 
     if (numOfLocations > 0) {
-        Colors("\nNOTE: while entering the name of locations that consist of more than one word, please insert a '-' between them (e.g Ain-Elsokhna).\n\n",3);
+        ConsoleOutput::info("\nNOTE: while entering the name of locations that consist of more than one word, please insert a '-' between them (e.g Ain-Elsokhna).\n\n");
     }
 
     for (int i = 1; i <= numOfLocations; i++) {
         if (i > 1) {
-            cout << "Enter the name of location " << i << ": (Or enter 'back' to re-enter the previous location).\n";
+            ConsoleOutput::message("Enter the name of location " + to_string(i) +": (Or enter 'back' to re-enter the previous location).\n");
             cin >> choice;
 
             if (Validation::CheckEB(choice)) { 
@@ -72,7 +72,7 @@ void Graph::insertGraph() {
             Location = choice;
         }
         else {
-            cout << "Enter the name of location " << i << ":\n";
+            ConsoleOutput::message("Enter the name of location " + to_string(i) + ":\n");
             cin >> Location;
         }
 
@@ -80,7 +80,7 @@ void Graph::insertGraph() {
 
         
         while (toInt.find(Location) != toInt.end()) {
-            Colors("Location already exists.\n",4);
+            ConsoleOutput::error("Location already exists.\n");
             cout<<"Enter the name of location " << i << ":\n";
             cin >> Location;
             Location = Validation::format(Location);
@@ -94,8 +94,8 @@ void Graph::insertGraph() {
         Validation::userGuide(choice,"How many roads would you like to add: (Or enter '0' to skip).", 2, roads);
 
         for (int i = 0; i < roads; i++) {
-            cout << "\nRoad #" << i + 1 << ":\n";
-            cout << "Enter the name of the first location: (Or enter 'exit' to exit this operation).\n";
+            ConsoleOutput::message("\nRoad #" + to_string(i + 1) + ":\n");
+            ConsoleOutput::message("Enter the name of the first location: (Or enter 'exit' to exit this operation).\n");
             cin >> Location1;
 
             if (Validation::CheckEB(Location1)) {
@@ -106,13 +106,13 @@ void Graph::insertGraph() {
 
             
             while(toInt.find(Location1) == toInt.end()){
-                Colors("Invalid input, Location does not exist.\n",4);
+                ConsoleOutput::error("Invalid input, Location does not exist.\n");
                 cout<<"Re-enter the name first location : \n";
                 cin >> Location1;
                 Location1 = Validation::format(Location1); //~edited by Mariam & Mo
             }
             e.from = toInt[Location1];
-            cout << "Enter the name of the second location: (Or enter 'exit' to exit this operation).\n";
+            ConsoleOutput::message("Enter the name of the second location: (Or enter 'exit' to exit this operation).\n");
             cin >> Location2;
 
             if (Validation::CheckEB(Location2)) {
@@ -122,7 +122,7 @@ void Graph::insertGraph() {
             Location2 = Validation::format(Location2);
 
             while (toInt.find(Location2) == toInt.end()) {
-                Colors("Invalid input, Location does not exist.\n",4);
+                ConsoleOutput::error("Invalid input, Location does not exist.\n");
                 cout<<"Re-nter the name of the second location:\n";
                 cin >> Location2;
                 Location2 = Validation::format(Location2);//~edited by Mariam & Mo
@@ -157,11 +157,11 @@ void Graph::Path(bool test) {
         if (numOfEdges >= 1) {
 
             if (test == 1) {
-                Colors("Welcome to testing mode.\n\n", 6);
+                ConsoleOutput::warning("Welcome to testing mode.\n\n");
             }
 
             do {
-                cout << "Enter the name of the location that you'd like to find the shortest path starting from : (Or enter 'exit' to exit this operation).\n";
+                ConsoleOutput::message("Enter the name of the location that you'd like to find the shortest path starting from : (Or enter 'exit' to exit this operation).\n");
                 cin >> Location1;
 
                 if (Validation::CheckEB(Location1)) {
@@ -171,8 +171,8 @@ void Graph::Path(bool test) {
                 Location1 = Validation::format(Location1);
 
                 while (toInt.find(Location1) == toInt.end()) {
-                    Colors("Invalid input, Location does not exist.\n", 4);
-                    cout << "Re-enter the name of the location that you'd to find the shortest path starting from: (Or enter 'exit' to exit this operation).\n";
+                    ConsoleOutput::error("Invalid input, Location does not exist.\n");
+                    ConsoleOutput::message("Re-enter the name of the location that you'd to find the shortest path starting from: (Or enter 'exit' to exit this operation).\n");
                     cin >> Location1;
 
                     if (Validation::CheckEB(Location1)) {
@@ -181,7 +181,7 @@ void Graph::Path(bool test) {
 
                     Location1 = Validation::format(Location1);
                 }
-                cout << "Enter the name of the location you'd like to go to: (Or enter 'exit' to exit this operation).\n";
+                ConsoleOutput::message("Enter the name of the location you'd like to go to: (Or enter 'exit' to exit this operation).\n");
                 cin >> Location2;
 
                 if (Validation::CheckEB(Location2)) {
@@ -192,8 +192,12 @@ void Graph::Path(bool test) {
 
                 while (toInt.find(Location2) == toInt.end() || Location1 == Location2) {
 
-                    Location1 == Location2 ? Colors("the destination must be different from the start location.\n", 4) : Colors("Invalid input, Location does not exist.\n", 4);
-                    cout << "Re-enter the name of the location you'd like to go to: (Or enter 'exit' to exit this operation).\n";
+                    Location1 == Location2 ?
+                        ConsoleOutput::error("the destination must be different from the start location.\n")
+                        : 
+                        ConsoleOutput::error("Invalid input, Location does not exist.\n");
+
+                    ConsoleOutput::message("Re-enter the name of the location you'd like to go to: (Or enter 'exit' to exit this operation).\n");
                     cin >> Location2;
 
                     if (Validation::CheckEB(Location2)) {
@@ -208,51 +212,52 @@ void Graph::Path(bool test) {
 
                 if (test == 1) {
                     
-                    Colors("\nDijkstra:\n", 3);
+                    ConsoleOutput::info("\nDijkstra:\n");
                     algoOutputTest(startNode, endNode, shortestPath::dijkstra);
 
                     
-                    Colors("\nBellman-Ford:\n", 3);
+                    ConsoleOutput::info("\nBellman-Ford:\n");
                     algoOutputTest(startNode, endNode, shortestPath::bellmanFord);
 
                     
-                    Colors("\nFloyd-Warshall:\n", 3);
+                    ConsoleOutput::info("\nFloyd-Warshall:\n");
                     algoOutputTest(startNode, endNode, shortestPath::floydWarshall);
                 }
                 else {
                     vector<int>answer = shortestPath::getPath(startNode, endNode, distance, nodes, edges, paths, queries);
 
                     if (distance != -1) {
-                        cout << "\nThe shortest path:\n";
+                        ConsoleOutput::message("\nThe shortest path:\n");
                         for (int i = 0; i < answer.size(); i++) {
 
                             if (i == answer.size() - 1) {
-                                cout << toString[answer[i]];
+                                ConsoleOutput::message(toString[answer[i]]);
                             }
                             else {
-                                cout << toString[answer[i]] << " --> ";
+                                ConsoleOutput::message(toString[answer[i]]);
+                                ConsoleOutput::info(" --> ");
                             }
 
                         }
-                        cout << "\nAnd is of total distance: " << distance << endl;
+                        ConsoleOutput::message("\nAnd is of total distance: " + to_string(distance) + "\n");
                     }
                     else {
-                        Colors("No path found.\n", 4);
+                        ConsoleOutput::error("No path found.\n");
                     }
                 }
-                cout << "\nWould you like to do another query? y/n\n";
+                ConsoleOutput::message("\nWould you like to do another query? y/n\n");
 
                 Validation::CheckYN(choice);
 
             } while (choice[0] == 'y');
         }
         else {
-            Colors("No roads found in the graph, this operation cannot proceed.\n", 4);
+            ConsoleOutput::error("No roads found in the graph, this operation cannot proceed.\n");
         }
     }
 
     else {
-        Colors("Number of locations is less than two, a road cannot possibly exist.\n", 4);
+        ConsoleOutput::error("Number of locations is less than two, a road cannot possibly exist.\n");
     }
 }
 
@@ -260,7 +265,7 @@ void Graph::Path(bool test) {
 //Function that prompts different operations on the graph depending on the input of the user.
 
 void Graph::updateGraph() { 
-    cout << "\nPlease enter:\n'1' to add a location\n'2' to delete a location\n'3' to add a road\n'4' to delete a road\n'5' to update a road\n'6' to display data\n'7' to find the shortest path between two locations\n'8' to run testing mode\n'9' to return to start menu.\n>> ";
+    ConsoleOutput::message("\nPlease enter:\n'1' to add a location\n'2' to delete a location\n'3' to add a road\n'4' to delete a road\n'5' to update a road\n'6' to display data\n'7' to find the shortest path between two locations\n'8' to run testing mode\n'9' to return to start menu.\n>> ");
     
     Validation::CheckNumbers(4, choice);
     cout << endl;
@@ -296,7 +301,7 @@ void Graph::updateGraph() {
         return; //~mo
        
     default:
-        Colors("Invalid input.\n",4);
+        ConsoleOutput::error("Invalid input.\n");
     }
     updateGraph();
 }
@@ -304,11 +309,11 @@ void Graph::updateGraph() {
 //Function that adds a new location to the graph.
 
 void Graph::addLocation() {
-    Colors("\nNOTE: while entering the name of locations that consist of more than one word, please insert a '-' between them (e.g Ain-Elsokhna).\n\n", 3);
+    ConsoleOutput::info("\nNOTE: while entering the name of locations that consist of more than one word, please insert a '-' between them (e.g Ain-Elsokhna).\n\n");
     do {
 
         RE_ENTER:
-        cout << "Enter the name of the new location: (Or enter 'exit' to exit this operation).\n";
+        ConsoleOutput::message("Enter the name of the new location: (Or enter 'exit' to exit this operation).\n");
         cin >> Location;
 
        
@@ -319,7 +324,7 @@ void Graph::addLocation() {
             return;
         }
         if (toInt.find(Location) != toInt.end()) {
-            Colors("Location already exists.\n", 4);
+            ConsoleOutput::error("Location already exists.\n");
             goto RE_ENTER; //~mo
         }
 
@@ -328,7 +333,7 @@ void Graph::addLocation() {
         nodes++;
         toInt[Location] = nodes;
         toString[nodes] = Location;
-        Colors("Added successfully.\n", 2);
+        ConsoleOutput::success("Added successfully.\n");
         cout<<"\nWould you like to add another location ? y/n\n";
 
         Validation::CheckYN(choice);
@@ -343,7 +348,7 @@ void Graph::deleteLocation() {
 
     if (nodes >= 1) {
         do {
-            cout << "Enter the name of the location that you would like to delete: (Or enter 'exit' to exit this operation).\n";
+            ConsoleOutput::message("Enter the name of the location that you would like to delete: (Or enter 'exit' to exit this operation).\n");
             cin >> Location;
 
             if (Validation::CheckEB(Location)) {
@@ -353,11 +358,11 @@ void Graph::deleteLocation() {
             Location = Validation::format(Location);
 
             while (toInt.find(Location) == toInt.end()) {
-                Colors("Invalid input, Location does not exist.\n", 4);
-                cout << "Please re-enter the name of the the location you would like to delete: (Or enter 'exit' to exit this operation).\n";
+                ConsoleOutput::error("Invalid input, Location does not exist.\n");
+                ConsoleOutput::message("Please re-enter the name of the the location you would like to delete: (Or enter 'exit' to exit this operation).\n");
                 cin >> Location;
 
-                if (Validation::CheckEB(Location)) { //~mo
+                if (Validation::CheckEB(Location)) {
                     return;
                 }
                 Location = Validation::format(Location);
@@ -368,24 +373,24 @@ void Graph::deleteLocation() {
             toString.erase(wanted_location); // delete the string from the mapping
 
 
-            toInt.erase(Location);//~mo
+            toInt.erase(Location);
             
             nodes--;
-            Colors("Deleted successfully.\n",2);
+            ConsoleOutput::success("Deleted successfully.\n");
             reset(); 
 
             if (nodes == 0) {
                 break;
             }
 
-            cout << "\nWould you like to delete another location? y/n\n";
+            ConsoleOutput::message("\nWould you like to delete another location? y/n\n");
 
             Validation::CheckYN(choice);
 
         } while (choice[0] == 'y');
     }
     else {
-        Colors("No Locations found in the graph , this operation cannot proceed.\n",4);
+        ConsoleOutput::error("No Locations found in the graph , this operation cannot proceed.\n");
     }
 }
 
@@ -399,7 +404,7 @@ void Graph::roadFns(char operation) {
     if (nodes >= 2) {
         if (numOfEdges > 0 || operation == 'a') {
             do {
-                cout << "Enter the name of the two locations which the road connects:\nEnter the first location. (Or enter 'exit' to exit operation).\n";
+                ConsoleOutput::message("Enter the name of the two locations which the road connects:\nEnter the first location. (Or enter 'exit' to exit operation).\n");
                 cin >> Location1;
 
                 if (Validation::CheckEB(Location1)) {
@@ -411,8 +416,8 @@ void Graph::roadFns(char operation) {
                 Location1 = Validation::format(Location1);
 
                 while (toInt.find(Location1) == toInt.end()) {
-                    Colors("Invalid input, Location does not exist.\n", 4);
-                    cout << "Re-enter the name of the first location: (Or enter 'exit' to exit this operation).\n";
+                    ConsoleOutput::error("Invalid input, Location does not exist.\n");
+                    ConsoleOutput::message("Re-enter the name of the first location: (Or enter 'exit' to exit this operation).\n");
                     cin >> Location1;
 
                     if (Validation::CheckEB(Location1)) {
@@ -427,7 +432,7 @@ void Graph::roadFns(char operation) {
                     break;
                 }
 
-                cout << "Enter the name of the second location: (Or enter 'exit' to exit this operation).\n";
+                ConsoleOutput::message("Enter the name of the second location: (Or enter 'exit' to exit this operation).\n");
                 cin >> Location2;
 
                 if (Validation::CheckEB(Location2)) {
@@ -438,17 +443,17 @@ void Graph::roadFns(char operation) {
 
                 Location2 = Validation::format(Location2);
                 if (Location2 == Location1) { //~mo
-                    Colors("the destination must be different from the start location.\n", 4);
+                    ConsoleOutput::error("the destination must be different from the start location.\n");
                     goto RE_ENTER;
                 }
 
 
                 while (toInt.find(Location2) == toInt.end()) {
-                    Colors("Invalid input, Location does not exist.\n", 4);
+                    ConsoleOutput::error("Invalid input, Location does not exist.\n");
 
 
-                    RE_ENTER: //~mo
-                    cout << "Re-enter the name of the second location: (Or enter 'exit' to exit this operation).\n";
+                    RE_ENTER:
+                    ConsoleOutput::error("Re-enter the name of the second location: (Or enter 'exit' to exit this operation).\n");
                     
                  
                     cin >> Location2;
@@ -460,7 +465,7 @@ void Graph::roadFns(char operation) {
                     Location2 = Validation::format(Location2);
 
                     if (Location2 == Location1) {
-                        Colors("the destination must be different from the start location.\n", 4);
+                        ConsoleOutput::error("the destination must be different from the start location.\n");
                         goto RE_ENTER;
                     }
 
@@ -498,10 +503,10 @@ void Graph::roadFns(char operation) {
 
                     reset();
 
-                    Colors("Road added Successfully.\n", 2);
+                    ConsoleOutput::success("Road added Successfully.\n");
 
                     if (numOfEdges > 0) {
-                        cout << "\nWould you like to add another road? y/n\n";
+                        ConsoleOutput::message("\nWould you like to add another road? y/n\n");
                     }
                     else {
                         break;
@@ -511,7 +516,7 @@ void Graph::roadFns(char operation) {
                     deleteEdge(e);
 
                     if (numOfEdges > 0) {
-                        cout << "\nWould you like to delete another road? y/n\n";
+                        ConsoleOutput::message("\nWould you like to delete another road? y/n\n");
                     }
                     else {
                         break;
@@ -521,7 +526,7 @@ void Graph::roadFns(char operation) {
                     int index1 = findEdge(e);
 
                     if (index1 != -1) {
-                        cout << "Enter the new length of the road:\n";
+                        ConsoleOutput::message("Enter the new length of the road:\n");
                         int newDistance;
                         cin >> newDistance;
                         edges[index1].distance = newDistance;
@@ -532,10 +537,10 @@ void Graph::roadFns(char operation) {
                             edges[index2].distance = newDistance;
                         }
                    
-                        Colors("Road updated successfully.\n", 2); //~mo
+                        ConsoleOutput::success("Road updated successfully.\n");
                         reset();
                     }
-                    cout << "\nWould you like to update another road ? y/n\n";
+                    ConsoleOutput::message("\nWould you like to update another road ? y/n\n");
                 }
 
                 Validation::CheckYN(choice);
@@ -543,11 +548,11 @@ void Graph::roadFns(char operation) {
             } while (choice[0] == 'y');
         }
         else {
-            Colors("No Roads found in the graph, this operation cannot proceed.\n",4);
+            ConsoleOutput::error("No Roads found in the graph, this operation cannot proceed.\n");
         }
     }
     else {
-        Colors("Number of locations is less than two, a road cannot possibly exist.\n", 4);
+        ConsoleOutput::error("Number of locations is less than two, a road cannot possibly exist.\n");
     }
 }
 
@@ -571,7 +576,7 @@ void Graph::deleteEdge(edge& e) {
 
 
     reset();
-    Colors("Road(s) deleted successfully.\n", 2);
+    ConsoleOutput::success("Road(s) deleted successfully.\n");
 }
 /*
 Function that resets two containers:
@@ -611,7 +616,7 @@ int Graph::findEdge(edge &e) {
             return i;
         }
     }
-    Colors("Invalid input, road does not exist.\n", 4);
+    ConsoleOutput::error("Invalid input, road does not exist.\n");
     return -1;
 }
 
@@ -621,19 +626,19 @@ describe locations and roads
 */
 
 void Graph::displayGraph() {
-    Colors(name, 13);
-    cout << " consists of ";
-    Colors(to_string(nodes), 13);
-    cout << " locations and ";
-    Colors(to_string(edges.size()), 13);
-    cout << " roads\n\n";
+    ConsoleOutput::info_bright(name);
+    ConsoleOutput::message(" consists of ");
+    ConsoleOutput::info_bright(to_string(nodes));
+    ConsoleOutput::message(" locations and ");
+    ConsoleOutput::info_bright(to_string(edges.size()));
+    ConsoleOutput::message(" roads\n\n");
     string arrow = (type == 1 ? " --> " : " <--> ");
 
     for (int i = 0; i < edges.size(); i += type) {
-        cout << toString[edges[i].from];
-        Colors(arrow, 2);
-        cout << toString[edges[i].to];
-        Colors(" -- with distance of : " + to_string(edges[i].distance), 7);
+        ConsoleOutput::message(toString[edges[i].from]);
+        ConsoleOutput::info(arrow);
+        ConsoleOutput::message(toString[edges[i].to]);
+        ConsoleOutput::message(" -- with distance of : " + to_string(edges[i].distance));
         cout << endl;
     }
     cout << endl;

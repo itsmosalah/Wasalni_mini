@@ -3,7 +3,7 @@
 #include <map>
 #include <vector>
 #include <string>
-#include"Colors.cpp"
+#include"ConsoleOutput.h"
 
 using namespace std;
 
@@ -35,7 +35,7 @@ value is 'y' or 'n',in case of invalid input, it asks the user to re-enter the v
 void Validation::CheckYN(string &choice) {
     cin >> choice;
     while (choice.size() > 1 || tolower(choice[0]) != 'n' && tolower(choice[0]) != 'y') {
-        Colors("Invalid Input, please enter 'y' or 'n':\n",4);
+        ConsoleOutput::error("Invalid Input, please enter 'y' or 'n':\n");
         cin >> choice;
     }
 }
@@ -47,7 +47,7 @@ void Validation::CheckNumbers(int i,string &choice) {
         cin >> choice;
 
         if (i == 1 && choice != "1" && choice != "2") {
-            Colors("Invalid Input, please enter 1 for directed graph or 2 for undirected graph:\n",4);
+            ConsoleOutput::error("Invalid Input, please enter 1 for directed graph or 2 for undirected graph:\n");
             CheckNumbers(1,choice);
         }
         else {
@@ -63,16 +63,16 @@ void Validation::CheckNumbers(int i,string &choice) {
                 switch (i)
                 {
                 case 2:
-                    Colors( "Invalid input, please enter a number: (greater than or equal to zero).\n",4);
+                    ConsoleOutput::error( "Invalid input, please enter a number: (greater than or equal to zero).\n");
                     CheckNumbers(2,choice);
                     break;
                 case 3:
-                    Colors( "Invalid input, please enter a positive number: (Distance must have a positive value).\n",4);
+                    ConsoleOutput::error( "Invalid input, please enter a positive number: (Distance must have a positive value).\n");
                     CheckNumbers(3,choice);
                     break;
                 case 4:
-                    Colors("Invalid input.\n",4);
-                    cout << "\nPlease enter:\n'1' to add a location\n'2' to delete a location\n'3' to add a road\n'4' to delete a road\n'5' to update a road\n'6' to find the shortest path between two locations\n'7' to run testing mode\n'8' to terminate the program.\n\n>> ";
+                    ConsoleOutput::error("Invalid input.\n");
+                    ConsoleOutput::message("\nPlease enter:\n'1' to add a location\n'2' to delete a location\n'3' to add a road\n'4' to delete a road\n'5' to update a road\n'6' to find the shortest path between two locations\n'7' to run testing mode\n'8' to terminate the program.\n\n>> ");
                     CheckNumbers(4, choice);
                     break;
                 }
@@ -95,14 +95,11 @@ void Validation::userGuide(string& choice,string s, int i, int& var, string s2) 
     do {
         cout << s << endl;
 
-        SetConsoleTextAttribute(h, 7);
-
         Validation::CheckNumbers(i,choice);
 
         var = stoi(choice);
 
         if (i == 3 && var == 0) {
-            SetConsoleTextAttribute(h, 4);
             Validation::userGuide(choice,"Invalid input, please enter a positive number: (Distance must have a positive value).", 3, var, "Would you like to proceed with the length that you entered? y/n");
         }
         else {

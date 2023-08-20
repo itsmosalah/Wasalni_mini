@@ -5,8 +5,13 @@
 class Wasalni {
 	
 	// constants
-	const string MESSAGE_ENTER_OR_LOAD_NEW_DATA = "Do you wish to enter new data or load previously saved data?\n"
-		"Enter \'1\' for entering new data, \'2\' for loading previously saved data, or \'0\' to terminate the program.\n";
+	const string MESSAGE_ENTER_OR_LOAD_NEW_DATA =
+"Do you wish to:\n\
+	(1) Enter new data\n\
+	(2) Load previously saved data\n\
+	(0) Exit the program\n\n\
+Enter a choice number, and press Enter.\n";
+
 	const string MESSAGE_ENTER_GRAPH_NAME
 		= "Enter graph name, or enter \"exit\" to return to start menu:\n";
 
@@ -20,7 +25,7 @@ class Wasalni {
 
 	bool graphExists(const string& graphName);
 	bool addIfValid(string graphName);
-	void initializeQuery();
+	void initializeWasalni();
 	bool validChoice(string choice);
 	void handleEnteringNewData();
 	void handleLoadingSavedData();

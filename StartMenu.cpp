@@ -1,10 +1,10 @@
 #include "StartMenu.h"
-#include "Colors.cpp"
+#include "ConsoleOutput.h"
 
 
 void Wasalni::runWasalni()
 {
-    initializeQuery();
+    initializeWasalni();
     
 
     string choice = getUserChoice();
@@ -41,12 +41,12 @@ void Wasalni::showSavePrompt() {
 
             FileHandling::save_graphsname(savedGraphs);
             
-            Colors("Data of \"" + currentGraph.name + "\" have been saved successfully!\n\n", 2);
+            ConsoleOutput::success("Data of \"" + currentGraph.name + "\" have been saved successfully!\n\n");
         }
         if (choice == 'y' || choice == 'n')
             break;
         else {
-            Colors("Invalid input. Please try again...\n", 4);
+            ConsoleOutput::error("Invalid input. Please try again...\n");
         }
     }
     
@@ -74,13 +74,13 @@ bool Wasalni::displaySavedGraphs() {
     {
         if (s.size() > 1)
             output = true;
-        Colors(to_string(index) + " - " + s + "\n", 3);
+        ConsoleOutput::info(to_string(index) + " - " + s + "\n");
         index++;
     }
     return output;
 }
 
-void Wasalni::initializeQuery() {
+void Wasalni::initializeWasalni() {
     currentGraph = Graph();
     
     if (!graphsNamesFileLoaded) {
@@ -110,7 +110,7 @@ void Wasalni::handleEnteringNewData()
 
         if (addIfValid(input)) break;
 
-        Colors("Name \"" + input + "\" is already used. Try another!\n", 4);
+        ConsoleOutput::error("Name \"" + input + "\" is already used. Try another!\n");
     } while (true);
 
     //now it is validated and added to the vector of strings of graph names that we have in runtime.
@@ -126,7 +126,7 @@ void Wasalni::handleLoadingSavedData()
     cout << "Here are the names of the saved graphs:\n";
     //if the display function returned false, this means nothing was stored and displayed
     if (!displaySavedGraphs()) {
-        Colors(" -- No graphs stored -- \n\n", 4);
+        ConsoleOutput::error(" -- No graphs stored -- \n\n");
         return;
     }
 
@@ -139,7 +139,7 @@ void Wasalni::handleLoadingSavedData()
     currentGraph.name = graphName;
     FileHandling::loadData(currentGraph);
 
-    Colors("Data for \"" + graphName + "\" have been loaded successfully!\n", 2);
+    ConsoleOutput::success("Data for \"" + graphName + "\" have been loaded successfully!\n");
 
     currentGraph.updateGraph();
 }
@@ -158,7 +158,7 @@ string Wasalni::getUserChoice()
             
             break;
         }
-        Colors("Invalid input. Please try again.\n", 4);
+        ConsoleOutput::error("Invalid input. Please try again.\n");
 
     } while (true);
     return choice;
@@ -168,7 +168,7 @@ string Wasalni::getSavedGraphName() {
     string input, graphName;
     int size = savedGraphs.size();
     do {
-        cout << "\nEnter the index of the graph you wish to load from the above list. Or enter \'0\' to return.\n";
+        ConsoleOutput::message("\nEnter the index of the graph you wish to load from the above list. Or enter \'0\' to return.\n");
         cin >> input;
 
         if (input == "0")
@@ -187,7 +187,7 @@ string Wasalni::getSavedGraphName() {
                 throw exception("Index out of bounds.");
         }
         catch (exception&) {
-            Colors("Invalid Input Please choose an index within the above list. From 1 to " + to_string(size) + "\n", 4);
+            ConsoleOutput::error("Invalid Input Please choose an index within the above list. From 1 to " + to_string(size) + "\n");
             continue;
         }
     } while (true);

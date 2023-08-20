@@ -7,7 +7,7 @@ using namespace std;
 
 
 int main() {
-  
+    
     Wasalni app;
     while (true) app.runWasalni();
     
