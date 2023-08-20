@@ -13,6 +13,12 @@ public:
 	static T getUserInput(std::initializer_list<T> choices);
 	template<typename T>
 	static T getUserInput(std::vector<T> choices);
+
+	template<typename T>
+	static T doubleCheckInputPrompt(std::initializer_list<T> choices);
+	
+	template<typename T>
+	static T doubleCheckInputPrompt(std::vector<T> choices);
 };
 
 // Implementing templates
@@ -60,4 +66,22 @@ T ConsoleInput::getUserInput(std::vector<T> choices) {
 template <typename T>
 T ConsoleInput::getUserInput(std::initializer_list<T> choices) {
 	return getUserInput(std::vector<T>(choices.begin(), choices.end()));
+}
+
+
+template<typename T>
+T ConsoleInput::doubleCheckInputPrompt(std::vector<T> choices) {
+	bool sure = false;
+	T input;
+	do {
+		input = getUserInput<T>(choices);
+		ConsoleOutput::message("Are you sure? (y/Y for yes)");
+		sure = tolower(getUserInput<char>({ 'y', 'Y' })) == 'y';
+	} while (!sure);
+	return input;
+}
+
+template<typename T>
+T ConsoleInput::doubleCheckInputPrompt(std::initializer_list<T> choices) {
+	return doubleCheckInputPrompt(vector<T>(choices.begin(), choices.end()));
 }
