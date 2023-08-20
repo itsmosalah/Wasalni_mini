@@ -124,9 +124,12 @@ void FileHandling::WriteResults(Graph &g, ofstream& file) {
 		file << -150 << endl;
 	}
 	file << -10 << endl << endl;
-	auto it = g.queries.begin();it++;
-	for (; it != g.queries.end(); it++) {
-		file << it->first.first << " " << it->first.second << ' ' << it->second << endl;
+	if (!g.queries.empty())
+	{
+		auto it = g.queries.begin(); it++;
+		for (; it != g.queries.end(); it++) {
+			file << it->first.first << " " << it->first.second << ' ' << it->second << endl;
+		}
 	}
 
 
@@ -139,7 +142,7 @@ void FileHandling::WriteResults(Graph &g, ofstream& file) {
 
 //----------------------------------------------Functions of graphs name file--------------------------------------------------------//
 
- void FileHandling::load_graphsname(vector<string>& graphsname) {
+ void FileHandling::load_graphsname(unordered_set<string>& graphsname) {
 	ifstream file;
 
 	//this avoids exception when file does not exist prior to opening
@@ -147,22 +150,19 @@ void FileHandling::WriteResults(Graph &g, ofstream& file) {
 	string s;
 	while (!file.eof()) {
 		file >> s;
-		if (!s.empty()) graphsname.push_back(s);
+		if (!s.empty()) graphsname.insert(s);
 	}
 
 }
 
- void FileHandling::save_graphsname(vector<string>& graphsname) {
+ void FileHandling::save_graphsname(unordered_set<string>& graphsname) {
 	ofstream file;
 	file.open("graphsname.txt");
 
-	for (int i = 0; i < graphsname.size(); i++) {
-		if (i < int(graphsname.size()) - 1) {
-			file << graphsname[i] << endl;
-		}
-		else {
-			file << graphsname[i];
-		}
+	int index = 0;
+	for (auto &name : graphsname) {
+		file << name << (index < int(graphsname.size()) - 1 ? "\n" : "");
+		index++;
 	}
 }
 
