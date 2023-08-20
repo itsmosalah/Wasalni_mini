@@ -1,0 +1,18 @@
+# IDE-related folders
+
+.idea
+.vs
+
+# stored graphs
+graphs/
+
+# environment-related
+x64
+CppProperties.json
+
+# other auto-generated files
+UpgradeLog.htm
+
+out
+
+
