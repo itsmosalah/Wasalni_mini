@@ -8,13 +8,47 @@ class ConsoleOutput {
         YELLOW = 6,
         WHITE = 7,
         CYAN = 11;
-    static void print(const std::string s, int color);
+    template <typename T>
+    static void print(const T s, int color);
 public:
-
-    static void message(const std::string s);
-    static void success(const std::string s);
-    static void error(const std::string s);
-    static void info(const std::string s);
-    static void info_bright(const std::string s);
-    static void warning(const std::string s);
+    template <typename T>
+    static void message(const T s);
+    template <typename T>
+    static void success(const T s);
+    template <typename T>
+    static void error(const T s);
+    template <typename T>
+    static void info(const T s);
+    template <typename T>
+    static void info_bright(const T s);
+    template <typename T>
+    static void warning(const T s);
 };
+
+
+#include<iostream>
+#include <windows.h>
+#include "ConsoleOutput.h"
+
+using namespace std;
+static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+
+template <typename T>
+void ConsoleOutput::print(const T s, int color) {
+    SetConsoleTextAttribute(h, color);
+    cout << s;
+    SetConsoleTextAttribute(h, 7);
+}
+
+template <typename T>
+void ConsoleOutput::message(const T s) { print(s, WHITE); }
+template <typename T>
+void ConsoleOutput::success(const T s) { print(s, DARK_GREEN); }
+template <typename T>
+void ConsoleOutput::error(const T s) { print(s, RED); }
+template <typename T>
+void ConsoleOutput::info(const T s) { print(s, TEAL); }
+template <typename T>
+void ConsoleOutput::info_bright(const T s) { print(s, CYAN); }
+template <typename T>
+void ConsoleOutput::warning(const T s) { print(s, YELLOW); }

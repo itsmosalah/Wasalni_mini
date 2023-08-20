@@ -1,14 +1,15 @@
 #include "StartMenu.h"
 #include "ConsoleOutput.h"
-
+#include "ConsoleInput.h"
 
 void Wasalni::runWasalni()
 {
     initializeWasalni();
     
 
-    string choice = getUserChoice();
-
+    ConsoleOutput::message(MESSAGE_ENTER_OR_LOAD_NEW_DATA);
+    int choice = ConsoleInput::getUserInput<int>({0, 1, 2});
+    
     if (choice == CHOICE_ENTER_NEW_DATA)
     {
         handleEnteringNewData();
@@ -17,39 +18,27 @@ void Wasalni::runWasalni()
     {
         handleLoadingSavedData();
     }
+    else if (choice == 0) {
+        exit(0);
+    }
     
     showSavePrompt();
 }
 
 //function to check whether user wishes to save or not
 void Wasalni::showSavePrompt() {
-
     if (currentGraph.name.empty())
         return;
 
-    char choice;
+    ConsoleOutput::message("Do you wish to save any change(s) made to \"" + currentGraph.name + "\" (y/n)\n");
+    char choice = ConsoleInput::getUserInput<char>({'y', 'n', 'Y', 'N'});
+    choice = tolower(choice);
 
-    while (true) {
-        cout << "Do you wish to save any change(s) made to \"" << currentGraph.name << "\" (y/n)\n";
-        cin >> choice;
-        if (choice == 'y') {
-
-            FileHandling::writeAll(currentGraph);
-            
-            //cout << "for testing. right before saving to file: \n";
-            //displaySavedGraphs();
-
-            FileHandling::save_graphsname(savedGraphs);
-            
-            ConsoleOutput::success("Data of \"" + currentGraph.name + "\" have been saved successfully!\n\n");
-        }
-        if (choice == 'y' || choice == 'n')
-            break;
-        else {
-            ConsoleOutput::error("Invalid input. Please try again...\n");
-        }
+    if (choice == 'y') {
+        FileHandling::writeAll(currentGraph);
+        FileHandling::save_graphsname(savedGraphs);
+        ConsoleOutput::success("Data of \"" + currentGraph.name + "\" have been saved successfully!\n\n");
     }
-    
 }
 
 bool Wasalni::addIfValid(string graphName)
@@ -89,20 +78,13 @@ void Wasalni::initializeWasalni() {
     }
 }
 
-bool Wasalni::validChoice(string choice)
-{
-    return (choice == CHOICE_EXIT or
-        choice == CHOICE_ENTER_NEW_DATA or
-        choice == CHOICE_LOAD_SAVED_DATA);
-}
-
 void Wasalni::handleEnteringNewData()
 {
     string input;
     //taking a name for the graph and validating it is not a duplicate
     do {
-        cout << MESSAGE_ENTER_GRAPH_NAME;  cin >> input;
-
+        ConsoleOutput::message(MESSAGE_ENTER_GRAPH_NAME);
+        input = ConsoleInput::getUserInput<string>({ "exit", "**Graph Name**" });
         if (input == "exit") {
             cout << endl;
             return;
@@ -131,7 +113,7 @@ void Wasalni::handleLoadingSavedData()
     }
 
     string graphName = getSavedGraphName();
-    if (graphName == "0")
+    if (graphName == EXIT)
         return;
 
     //now we have an existing graph. all we need to do is load it into current graph
@@ -144,52 +126,19 @@ void Wasalni::handleLoadingSavedData()
     currentGraph.updateGraph();
 }
 
-string Wasalni::getUserChoice()
-{
-    string choice;
-    do
-    {
-        cout << MESSAGE_ENTER_OR_LOAD_NEW_DATA; cin >> choice;
-
-        if (validChoice(choice))
-        {
-            if (choice == CHOICE_EXIT)
-                exit(0);
-            
-            break;
-        }
-        ConsoleOutput::error("Invalid input. Please try again.\n");
-
-    } while (true);
-    return choice;
-}
 
 string Wasalni::getSavedGraphName() {
-    string input, graphName;
-    int size = savedGraphs.size();
-    do {
-        ConsoleOutput::message("\nEnter the index of the graph you wish to load from the above list. Or enter \'0\' to return.\n");
-        cin >> input;
+    int input, size = savedGraphs.size();
+    vector<int> inputs(size + 1); for (int i = 0; i <= size; i++) inputs[i] = i;
+    
+    ConsoleOutput::message("\nEnter the index of the graph you wish to load from the above list. Or enter \'0\' to return.\n");
 
-        if (input == "0")
-            break;
+    input = ConsoleInput::getUserInput(inputs);
 
-        try {
-            int input_num = stoi(input) - 1, index = 0;
-            for (auto it = savedGraphs.begin(); it != savedGraphs.end(); it++, index++) {
-                if (index == input_num)
-                {
-                    graphName = *it;
-                    break;
-                }
-            }
-            if (graphName.empty())
-                throw exception("Index out of bounds.");
-        }
-        catch (exception&) {
-            ConsoleOutput::error("Invalid Input Please choose an index within the above list. From 1 to " + to_string(size) + "\n");
-            continue;
-        }
-    } while (true);
-    return graphName;
+    if (input == 0) return EXIT;
+
+    auto it = savedGraphs.begin();
+    for (int index = 0; index < input - 1; it++, index++);
+
+    return *it;
 }

@@ -13,11 +13,12 @@ class Wasalni {
 Enter a choice number, and press Enter.\n";
 
 	const string MESSAGE_ENTER_GRAPH_NAME
-		= "Enter graph name, or enter \"exit\" to return to start menu:\n";
+		= "Enter graph name, or enter \"exit\" to return to start menu:\n",
+		EXIT = "exit";
 
-	const string CHOICE_EXIT = "0",
-		CHOICE_ENTER_NEW_DATA = "1",
-		CHOICE_LOAD_SAVED_DATA = "2";
+	const int CHOICE_EXIT = 0,
+		CHOICE_ENTER_NEW_DATA = 1,
+		CHOICE_LOAD_SAVED_DATA = 2;
 
 
 	bool graphsNamesFileLoaded = false;
@@ -26,10 +27,8 @@ Enter a choice number, and press Enter.\n";
 	bool graphExists(const string& graphName);
 	bool addIfValid(string graphName);
 	void initializeWasalni();
-	bool validChoice(string choice);
 	void handleEnteringNewData();
 	void handleLoadingSavedData();
-	string getUserChoice();
 	string getSavedGraphName();
 
 public: 
