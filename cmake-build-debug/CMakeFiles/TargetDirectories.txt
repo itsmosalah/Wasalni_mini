@@ -1,3 +1,0 @@
-/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug/CMakeFiles/edit_cache.dir
-/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug/CMakeFiles/Wasalni_final.dir

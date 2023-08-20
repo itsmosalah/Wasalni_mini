@@ -1,4 +1,0 @@
-/home/itsmosalah/programs/CLion-2021.2.1/clion-2021.2.1/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final
--- Configuring done
--- Generating done
--- Build files have been written to: /media/itsmosalah/3CC47A79C47A34EC/myprojects/ds/vs_wsalni/Wasalni_final/cmake-build-debug
