@@ -2,7 +2,7 @@
 #include"Graph.h"
 #include"FileHandling.h"
 
-class StartMenu {
+class Wasalni {
 	
 	// constants
 	const string MESSAGE_ENTER_OR_LOAD_NEW_DATA = "Do you wish to enter new data or load previously saved data?\n"
@@ -15,25 +15,22 @@ class StartMenu {
 		CHOICE_LOAD_SAVED_DATA = "2";
 
 
-	// instance fields
-
 	bool graphsNamesFileLoaded = false;
-	vector <string> savedGraphs;
-
-	// functions
+	unordered_set <string> savedGraphs;
 
 	bool graphExists(const string& graphName);
 	bool addIfValid(string graphName);
 	void initializeQuery();
-	bool invalidChoice(string choice);
+	bool validChoice(string choice);
 	void handleEnteringNewData();
 	void handleLoadingSavedData();
 	string getUserChoice();
+	string getSavedGraphName();
 
 public: 
 	Graph currentGraph;
 	void runWasalni();
 	bool displaySavedGraphs();
-	void savePrompt();
+	void showSavePrompt();
 
 };

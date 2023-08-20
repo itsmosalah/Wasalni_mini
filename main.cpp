@@ -8,7 +8,7 @@ using namespace std;
 
 int main() {
   
-    StartMenu mainMenu;
-    while (true) mainMenu.runWasalni();
+    Wasalni app;
+    while (true) app.runWasalni();
     
 }
