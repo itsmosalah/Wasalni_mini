@@ -4,7 +4,8 @@
 #include <vector>
 #include <fstream> 
 #include <map>
-#include "Graph.h" // ~mo
+#include <unordered_set>
+#include "Graph.h"
 
 using namespace std;
 
@@ -36,11 +37,9 @@ public:
 
 	//----------------------------------------------Functions of graphs name file--------------------------------------------------------//
 
-	static void load_graphsname(vector<string>& graphsname);
+	static void load_graphsname(unordered_set<string>& graphsname);
 
-	static void save_graphsname(vector<string>& graphsname);
-
-
+	static void save_graphsname(unordered_set<string>& graphsname);
 };
 
 
